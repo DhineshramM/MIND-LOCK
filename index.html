@@ -54,6 +54,14 @@ footer{padding:40px 6%;background:var(--gray);text-align:center}
 <div style="display:flex;justify-content:space-between;font-size:12px;font-weight:700"><span>9:41</span><span>DHINESHRAM'S APP</span></div>
 <h4 style="text-align:center;margin-top:30px;letter-spacing:2px;color:var(--purple);font-size:12px">FOCUS CHECK #4</h4>
 <div class="breathe-circle" id="breathe" onclick="startBreathe()">BREATHE</div>
+<div style="background:#F5F5F7;padding:12px;border-radius:12px;margin-top:15px">
+  <label style="font-size:12px;font-weight:700">Inhale: <span id="inhaleVal">2s</span></label>
+  <input type="range" id="inhaleSpeed" min="1" max="5" step="0.5" value="2" style="width:100%" oninput="updateSettings()">
+  <label style="font-size:12px;font-weight:700">Exhale: <span id="exhaleVal">2s</span></label>
+  <input type="range" id="exhaleSpeed" min="1" max="5" step="0.5" value="2" style="width:100%" oninput="updateSettings()">
+  <label style="font-size:12px;font-weight:700">Duration: <span id="durationVal">60s</span></label>
+  <input type="range" id="totalDuration" min="10" max="300" step="10" value="60" style="width:100%" oninput="updateSettings()">
+</div>
 <h3 style="text-align:center">Tap to start focus</h3>
 <p style="text-align:center;color:gray;font-size:12px;margin-top:8px">Complete to keep apps unlocked</p>
 <div class="lock-bar" id="lockBar">🚨 LOCKED: Distracting apps locked for 15 mins</div>
@@ -95,15 +103,27 @@ footer{padding:40px 6%;background:var(--gray);text-align:center}
 <footer><p style="font-weight:700;letter-spacing:1px">© 2026 MINDLOCK — DESIGNED & DEVELOPED BY DHINESHRAM</p><p style="color:gray;font-size:12px;margin-top:8px">Made with focus in Rajapalayam, Tamil Nadu, India.</p></footer>
 
 <script>
-let breathing=false;
-function startBreathe(){
- const el=document.getElementById('breathe'); if(breathing) return; breathing=true;
- el.innerText="INHALE..."; el.style.transform="scale(1.4)";
- setTimeout(()=>{el.innerText="EXHALE..."; el.style.transform="scale(0.9)";},1500);
- setTimeout(()=>{el.innerText="DONE ✓"; el.style.background="#00b894"; breathing=false;},3000);
+// PAZHAYA CODE ELLAM DELETE PANNI ITHA PASTE PANNU
+let inhaleTime = 2, exhaleTime = 2, totalTime = 60;
+let isRunning = false, timerId = null;
+
+function updateSettings(){
+  inhaleTime = parseFloat(document.getElementById('inhaleSpeed').value);
+  exhaleTime = parseFloat(document.getElementById('exhaleSpeed').value);
+  totalTime = parseInt(document.getElementById('totalDuration').value);
+  document.getElementById('inhaleVal').innerText = inhaleTime + "s";
+  document.getElementById('exhaleVal').innerText = exhaleTime + "s";
+  document.getElementById('durationVal').innerText = totalTime + "s";
 }
-function failTask(){document.getElementById('lockBar').style.display="block";document.getElementById('breathe').style.background="#d63031";document.getElementById('breathe').innerText="LOCKED";}
-function completeTask(){document.getElementById('lockBar').style.display="none";document.getElementById('breathe').style.background="#00b894";document.getElementById('breathe').innerText="SAVED ✓";}
+function startSession(){
+  if(isRunning) return; isRunning = true; let elapsed = 0;
+  const circle = document.getElementById('breathe');
+  timerId = setInterval(()=>{ elapsed++; if(elapsed >= totalTime){ stopSession(); circle.innerText = "DONE"; } }, 1000);
+  function doInhale(){ if(!isRunning) return; circle.style.transitionDuration = inhaleTime + "s"; circle.style.transform = "scale(1.5)"; circle.innerText = "INHALE"; setTimeout(doExhale, inhaleTime * 1000); }
+  function doExhale(){ if(!isRunning) return; circle.style.transitionDuration = exhaleTime + "s"; circle.style.transform = "scale(0.8)"; circle.innerText = "EXHALE"; setTimeout(doInhale, exhaleTime * 1000); }
+  doInhale();
+}
+function stopSession(){ isRunning = false; clearInterval(timerId); const circle = document.getElementById('breathe'); circle.style.transform = "scale(1)"; circle.innerText = "START"; }
 </script>
 </body>
 </html>
