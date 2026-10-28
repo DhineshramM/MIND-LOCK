@@ -16,94 +16,45 @@ nav{padding:18px 6%;display:flex;justify-content:space-between;align-items:cente
 .hero h1{font-size: clamp(40px, 6vw, 82px);line-height:0.9;} .hero h1 i{font-style:normal;background:var(--lime);padding:0 12px;border-radius:12px;transform:rotate(-2deg);display:inline-block}
 .hero p{font-size:19px;color:#666;margin:24px 0 30px;max-width:500px;line-height:1.6}
 .btn-black{background:var(--black);color:white;padding:16px 28px;border-radius:100px;text-decoration:none;font-weight:600;transition:.3s;display:inline-block}
-.btn-black:hover{transform:scale(1.03)}
 .phone-wrap{position:relative;display:flex;justify-content:center}
 .phone{width:320px;height:640px;background:black;border-radius:55px;padding:12px;box-shadow:0 50px 100px rgba(0,0,0,0.2), 20px 20px 0 var(--purple);}
-.phone-screen{background:white;height:100%;border-radius:45px;padding:22px;overflow:hidden;display:flex;flex-direction:column}
-.breathe-circle{width:140px;height:140px;background:var(--purple);border-radius:50%;margin:30px auto;display:flex;align-items:center;justify-content:center;color:white;font-weight:800;font-size:22px;transition:all 3s ease-in-out;cursor:pointer}
-.lock-bar{background:#FFE5E5;border:1px solid #FFB3B3;color:#D63031;padding:12px;border-radius:14px;font-size:12px;font-weight:600;margin-top:auto;display:none}
-.trusted{padding:30px 6%;border-top:1px solid #eee;border-bottom:1px solid #eee;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px;color:#999;font-weight:600;font-size:14px;letter-spacing:1px}
-.features{padding:90px 6%;background:var(--gray)}
-.section-title{font-size:52px;text-align:center;margin-bottom:60px} .grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}
-.f-card{background:white;padding:35px;border-radius:24px;border:1px solid #eee;transition:.4s} .f-card:hover{transform:translateY(-8px);box-shadow:0 20px 40px rgba(0,0,0,0.06)}
-.f-card .icon{width:48px;height:48px;background:var(--black);color:white;border-radius:14px;display:grid;place-items:center;font-size:22px}
-.modes{padding:0 6% 90px;display:grid;grid-template-columns:1fr 1fr;gap:24px}
-.mode{border-radius:32px;padding:40px} .mode h3{font-size:32px} .mode ul{margin-top:20px;list-style:none} .mode li{margin:10px 0;font-weight:500}
-.m-beginner{background:var(--lime)} .m-harder{background:var(--black);color:white}
-.founder{padding:80px 6%;background:white;text-align:center;border-top:1px solid #eee}
-.founder-card{max-width:600px;margin:0 auto;background:var(--black);color:white;border-radius:32px;padding:50px;position:relative;overflow:hidden}
-.avatar{width:90px;height:90px;background:var(--lime);color:black;border-radius:50%;display:grid;place-items:center;font-size:40px;font-weight:800;margin:0 auto 20px;font-family:'Syne'}
+.phone-screen{background:white;height:100%;border-radius:45px;padding:22px;overflow-y:auto;display:flex;flex-direction:column}
+.breathe-circle{width:140px;height:140px;background:var(--purple);border-radius:50%;margin:20px auto;display:flex;align-items:center;justify-content:center;color:white;font-weight:800;font-size:22px;transition:transform 2s ease-in-out;cursor:pointer;flex-shrink:0}
+.lock-bar{background:#FFE5E5;border:1px solid #FFB3B3;color:#D63031;padding:12px;border-radius:14px;font-size:12px;font-weight:600;display:none}
 footer{padding:40px 6%;background:var(--gray);text-align:center}
-@media(max-width:900px){.hero{grid-template-columns:1fr}.modes{grid-template-columns:1fr}.hero h1{font-size:48px}}
+@media(max-width:900px){.hero{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 <nav><div class="logo">MINDLOCK<b>®</b></div><div class="by-badge">BY DHINESHRAM</div></nav>
-
 <section class="hero">
 <div>
 <div style="background:var(--lime);display:inline-block;padding:6px 14px;border-radius:100px;font-size:12px;font-weight:700;margin-bottom:15px">📍 RAJAPALAYAM, TAMIL NADU</div>
 <h1>DISTRACTION IS A <i>CHOICE.</i> WE REMOVE IT.</h1>
-<p>Built by Dhineshram for competitive exam aspirants & IT professionals. Every hour, 60-sec mindful reset. Miss it? Your distractions get locked.</p>
-<a href="#" class="btn-black">Download App — It's Free</a>
+<p>Slider-a move panni speed maathu, apparam BREATHE-a click pannu. Ippo work aagum.</p>
 </div>
-
 <div class="phone-wrap">
 <div class="phone">
 <div class="phone-screen">
 <div style="display:flex;justify-content:space-between;font-size:12px;font-weight:700"><span>9:41</span><span>DHINESHRAM'S APP</span></div>
-<h4 style="text-align:center;margin-top:30px;letter-spacing:2px;color:var(--purple);font-size:12px">FOCUS CHECK #4</h4>
-<div class="breathe-circle" id="breathe" onclick="startBreathe()">BREATHE</div>
-<div style="background:#F5F5F7;padding:12px;border-radius:12px;margin-top:15px">
-  <label style="font-size:12px;font-weight:700">Inhale: <span id="inhaleVal">2s</span></label>
-  <input type="range" id="inhaleSpeed" min="1" max="5" step="0.5" value="2" style="width:100%" oninput="updateSettings()">
-  <label style="font-size:12px;font-weight:700">Exhale: <span id="exhaleVal">2s</span></label>
-  <input type="range" id="exhaleSpeed" min="1" max="5" step="0.5" value="2" style="width:100%" oninput="updateSettings()">
-  <label style="font-size:12px;font-weight:700">Duration: <span id="durationVal">60s</span></label>
-  <input type="range" id="totalDuration" min="10" max="300" step="10" value="60" style="width:100%" oninput="updateSettings()">
+<h4 style="text-align:center;margin-top:15px;letter-spacing:2px;color:var(--purple);font-size:11px">CUSTOM BREATHING LAB</h4>
+<div class="breathe-circle" id="breathe" onclick="startSession()">BREATHE</div>
+<div style="background:#F5F5F7;padding:12px;border-radius:14px;margin:10px 0;">
+  <div style="display:flex;justify-content:space-between;font-size:11px;font-weight:700"><span>Inhale Speed</span><span id="inhaleVal">2s</span></div>
+  <input type="range" id="inhaleSpeed" min="1" max="5" step="0.5" value="2" style="width:100%;accent-color:#6C5CE7" oninput="updateSettings()">
+  <div style="display:flex;justify-content:space-between;font-size:11px;font-weight:700;margin-top:8px"><span>Exhale Speed</span><span id="exhaleVal">2s</span></div>
+  <input type="range" id="exhaleSpeed" min="1" max="5" step="0.5" value="2" style="width:100%;accent-color:#6C5CE7" oninput="updateSettings()">
+  <div style="display:flex;justify-content:space-between;font-size:11px;font-weight:700;margin-top:8px"><span>Duration</span><span id="durationVal">60s</span></div>
+  <input type="range" id="totalDuration" min="10" max="300" step="10" value="60" style="width:100%;accent-color:#6C5CE7" oninput="updateSettings()">
 </div>
-<h3 style="text-align:center">Tap to start focus</h3>
-<p style="text-align:center;color:gray;font-size:12px;margin-top:8px">Complete to keep apps unlocked</p>
-<div class="lock-bar" id="lockBar">🚨 LOCKED: Distracting apps locked for 15 mins</div>
-<button onclick="failTask()" style="margin-top:20px;border:1px solid #eee;padding:10px;border-radius:20px;background:white;cursor:pointer;font-size:12px;width:100%">Simulate: Skip Task →</button>
-<button onclick="completeTask()" style="margin-top:10px;border:none;padding:12px;border-radius:20px;background:var(--black);color:white;cursor:pointer;font-weight:600;width:100%">I Completed ✓</button>
+<div class="lock-bar" id="lockBar">🚨 LOCKED</div>
+<button onclick="stopSession()" style="margin-top:8px;border:1px solid #eee;padding:10px;border-radius:20px;background:white;cursor:pointer;font-size:12px;width:100%">Stop / Reset</button>
 </div>
 </div>
 </div>
 </section>
-
-<div class="trusted"><span>BUILT FOR</span><span>UPSC • GATE • NEET</span><span>IT PROFESSIONALS</span><span>FOCUS SEEKERS</span></div>
-
-<section class="features">
-<h2 class="section-title">Your Phone is the Enemy. I Tamed It.</h2>
-<div class="grid3">
-<div class="f-card"><div class="icon">🧠</div><h3>Mindful Micro-Reset</h3><p style="color:gray;margin-top:10px">60-sec neuroscience-backed eye & breath exercises that improve concentration and calm your mind.</p></div>
-<div class="f-card"><div class="icon">⛓️</div><h3>Brutal Lock Logic</h3><p style="color:gray;margin-top:10px">If you delay 2 min, 10 min lock. Delay 5 min, 30 min lock. Developed by Dhineshram for real discipline.</p></div>
-<div class="f-card"><div class="icon">📈</div><h3>Focus Score</h3><p style="color:gray;margin-top:10px">Track your daily focus streak and see your concentration improve day by day.</p></div>
-</div>
-</section>
-
-<section class="modes">
-<div class="mode m-beginner"><h3>Beginner<br>For IT Folks</h3><ul><li>✅ Only selected apps locked</li><li>✅ 2-min grace time</li><li>✅ Work apps always open</li></ul></div>
-<div class="mode m-harder"><h3>Harder Mode<br>For Aspirants</h3><ul><li>🔥 Full Phone Lockdown</li><li>🔥 Zero grace time</li><li>🔥 Ensures maximum focus</li></ul></div>
-</section>
-
-<section class="founder">
-<div class="founder-card">
-<div class="avatar">D</div>
-<h2 style="font-size:36px">Crafted by Dhineshram</h2>
-<p style="color:#aaa;margin:15px 0 25px;line-height:1.6">From Rajapalayam. I built MindLock because I was distracted too. This is the productivity app I always wanted — now for everyone who wants to achieve more.</p>
-<div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
-<span style="background:#222;padding:8px 16px;border-radius:100px;font-size:12px">📍 Rajapalayam, Tamil Nadu</span>
-<span style="background:var(--lime);color:black;padding:8px 16px;border-radius:100px;font-size:12px;font-weight:700">💻 Founder & Developer</span>
-</div>
-</div>
-</section>
-
-<footer><p style="font-weight:700;letter-spacing:1px">© 2026 MINDLOCK — DESIGNED & DEVELOPED BY DHINESHRAM</p><p style="color:gray;font-size:12px;margin-top:8px">Made with focus in Rajapalayam, Tamil Nadu, India.</p></footer>
-
+<footer><p style="font-weight:700">© 2026 MINDLOCK — BY DHINESHRAM</p></footer>
 <script>
-// PAZHAYA CODE ELLAM DELETE PANNI ITHA PASTE PANNU
 let inhaleTime = 2, exhaleTime = 2, totalTime = 60;
 let isRunning = false, timerId = null;
 
@@ -116,14 +67,17 @@ function updateSettings(){
   document.getElementById('durationVal').innerText = totalTime + "s";
 }
 function startSession(){
-  if(isRunning) return; isRunning = true; let elapsed = 0;
+  if(isRunning) return;
+  isRunning = true;
+  let elapsed = 0;
   const circle = document.getElementById('breathe');
-  timerId = setInterval(()=>{ elapsed++; if(elapsed >= totalTime){ stopSession(); circle.innerText = "DONE"; } }, 1000);
-  function doInhale(){ if(!isRunning) return; circle.style.transitionDuration = inhaleTime + "s"; circle.style.transform = "scale(1.5)"; circle.innerText = "INHALE"; setTimeout(doExhale, inhaleTime * 1000); }
-  function doExhale(){ if(!isRunning) return; circle.style.transitionDuration = exhaleTime + "s"; circle.style.transform = "scale(0.8)"; circle.innerText = "EXHALE"; setTimeout(doInhale, exhaleTime * 1000); }
+  timerId = setInterval(()=>{ elapsed++; if(elapsed >= totalTime){ stopSession(); circle.innerText = "DONE ✓"; circle.style.background="#00b894"; } }, 1000);
+  function doInhale(){ if(!isRunning) return; circle.style.transitionDuration = inhaleTime + "s"; circle.style.transform = "scale(1.5)"; circle.innerText = "INHALE"; setTimeout(doExhale, inhaleTime*1000); }
+  function doExhale(){ if(!isRunning) return; circle.style.transitionDuration = exhaleTime + "s"; circle.style.transform = "scale(0.8)"; circle.innerText = "EXHALE"; setTimeout(doInhale, exhaleTime*1000); }
   doInhale();
 }
-function stopSession(){ isRunning = false; clearInterval(timerId); const circle = document.getElementById('breathe'); circle.style.transform = "scale(1)"; circle.innerText = "START"; }
+function stopSession(){ isRunning = false; clearInterval(timerId); const c=document.getElementById('breathe'); c.style.transform="scale(1)"; c.innerText="BREATHE"; c.style.background="#6C5CE7"; }
+updateSettings();
 </script>
 </body>
 </html>
